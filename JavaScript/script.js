@@ -1,237 +1,129 @@
-let str = "I love JavaScript";
-console.log(str.length);
-console.log(str[0]);
-console.log(str[str.length - 1]);
-
-//========================================
-
-let string = "   JavaScript  &    ";
-console.log(string.trim());
-console.log(string.trimStart());
-console.log(string.trimEnd());
-console.log(string.toLowerCase());
-
-//========================================
-let numbersarry=[1,2,3,4,5]
-for (let i = 0; i < numbersarry.length; i++) {
-    console.log(i);
+function toUpperCaseArray(arr) {
+    return arr.map(function(item) {
+    return item.toUpperCase();
+    });
 }
-console.log(numbersarry.length);
-console.log(numbersarry.length - 1);
+const names = ["ahmed", "sara"];
+console.log(toUpperCaseArray(names));
 
-//========================================
+//=======================================
+function checkPassed(students) {
+    return students.map(function(student) {
+    return {
+        name: student.name,
+        score: student.score,
+        passed: student.score >= 50
+    };
+    });
+}
+const students = [
+    { name: "Ahmed", score: 80 },
+    { name: "Sara", score: 40 }
+];
+console.log(checkPassed(students));
 
-for (let i = 1; i <= 20; i++) {
-    if (i === 10) continue;
-    console.log(i);
-}
-//========================================
-let numbers = [3, 8, 6, 10, 2];
-for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] > 6) {
-    console.log(numbers[i]);
-}
-}
 
-//========================================
-let num = -4; 
-if (num > 0) {
-    console.log("Positive");
-} else if (num < 0) {
-    console.log("Negative");
-} else {
-    console.log("Zero");
+
+//===============================================
+
+function longWords(arr) {
+    return arr.filter(word => word.length > 4);
 }
-//========================================
-let values = ["js", "15", "8.5", true, false, null];
-for (let i = 0; i < values.length; i++) {
-    console.log(Number(values[i]));
+console.log(longWords(["i love javescript", "hello", "i love programming"]));
+
+
+//==================================================
+function average(arr) {
+    let sum = arr.reduce((a, b) => a + b);
+    return sum / arr.length;
 }
 
-//========================================
 
-let sentence = "I love JavaScript";
-if (sentence.includes("JavaScript")) {
-    console.log("Found");
-} else {
-    console.log("Not Found");
+console.log(average([60, 70,90]));
+
+
+//====================================================
+
+function Names(arr) {
+    return arr
+    .filter(person => person.age >= 18)
+    .map(person => person.name);
 }
+console.log(Names([
+    { name: "Ahmed", age: 23 },
+    { name: "Ail", age: 12 },
+    { name: "Mona", age: 25 }
+]));
 
-//========================================
+//========================================================
 
-let names = ["Nada", "Sara", "Omar"];
-for (let i = 0; i < names.length; i++) {
-    console.log(names[i]);
-}
-
-//========================================
-
-let randomnumber = Math.floor(Math.random() * 10) + 1;
-console.log(randomnumber);
-
-//========================================
-
-let ages = [11, 12, 15, 18, 20, 25];
-for (let i = 0; i < ages.length; i++) {
-    if (ages[i] >= 18) {
-    console.log(ages[i]);
-}
-}
-//========================================
-let string22 = "Hello World";
-let count = 0;
-for (let i = 0; i < string22.length; i++) {
-    count++;
-}
-console.log(count);
-
-//========================================
-
-let numbers1 = [7.6, 8.2, 5.9, 9.1];
-
-for (let i = 0; i < numbers1.length; i++) {
-    if (Math.round(numbers1[i]) >= 8) {
-    console.log("Pass");
-} else {
-    console.log("Fail");
-}
-}
-
-//========================================
-
-for (let i = 1; i <= 30; i++) {
-    if (i % 2 === 0) {
-    console.log(i);
+function factoial(n) {
+    let result = 1;
+    for (let i = 1; i <= n; i++) {
+    result = result * i;
     }
+
+    return result;
+}
+console.log(factoial(5)); 
+console.log(factoial(4)); 
+
+
+//=================================================
+
+function uniqueNumbers(arr) {
+    return arr.filter(num => arr.indexOf(num) === arr.lastIndexOf(num));
+}
+console.log(uniqueNumbers([1, 1, 1, 2, 1, 1]));
+console.log(uniqueNumbers([2, 4, -2]));
+
+//=====================================
+function removeSpecialChars(str) {
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    if (
+        (ch >= "a" && ch <= "z") ||
+        (ch >= "A" && ch <= "Z") ||
+        (ch >= "0" && ch <= "9") ||
+        ch === " " ||
+        ch === "_" ||
+        ch === "-"
+    ) {
+        result += ch;
+    }
+    }
+
+    return result;
+}
+console.log(removeSpecialChars("Hi How are you!"));
+console.log(removeSpecialChars("Are-u_coming?"));
+
+//=============================================
+
+function replaceSpaces(str) {
+    if (str.includes(" ")) {
+    return str.split(" ").join("Love js");
+    }
+    return str;
 }
 
-//========================================
-let numberString = "7";
-let number = Number(numberString);
-if (number % 2 === 0) {
-    console.log("Even");
-} else {
-    console.log("Odd");
-}
+console.log(replaceSpaces("Hello World"));
 
-//========================================
+//=========================================
+function modifyNumbers(arr) {
+    return arr.map(num => {
+    if (num % 2 === 0) {
+    return num + 1;
+    } else {
+    return num - 1;
+    }
+    });
+}
+console.log(modifyNumbers([73, 221, 52, 214]));
 
-let numberss = [5, 2, 9, 1, 7];
-let max = numberss[0];
-let min = numberss[0];
 
-for (let i = 1; i < numberss.length; i++) {
-    if (numberss[i] > max) {
-    max = numberss[i];
-}
-    if (numberss[i] < min) {
-    min = numberss[i];
-}
-}
-console.log("Max:", max);
-console.log("Min:", min);
 
-//========================================
-let sentence2 = "I love JavaScript very much";
-let words = sentence2.split(" ");
-for (let i = 0; i < words.length; i++) {
-    console.log(words[i]);
-}
 
-//========================================
-for (let i = 10; i >= 1; i--) {
-    console.log(i);
-}
-//========================================
-let numbers3 = [2, 4, 6, 8, 10];
-let sum = 0;
-for (let i = 0; i < numbers3.length; i++) {
-    sum += numbers3[i];
-}
-console.log(sum);
-//========================================
-let string3 = "JavaScript";
-if (string3[0] === "J") {
-    console.log("Yes");
-} else {
-    console.log("No");
-}
 
-//========================================
 
-let randomNumber = Math.floor(Math.random() * 6) + 1;
-console.log(randomNumber);
-//========================================
-let numbers4 = [1, 3, 5, 7, 9];
-let newArray = [];
-for (let i = 0; i < numbers4.length; i++) {
-    newArray.push(numbers4[i] * 2);
-}
-console.log(newArray);
-//========================================
-let string4 = "JavaScript";
-for (let i = 0; i < string4.length; i++) {
-    console.log(string4[i]);
-}
-//========================================
-let number5 = 30;
-if (number5 % 3 === 0 && number5 % 5 === 0) {
-    console.log("Yes");
-} else {
-    console.log("No");
-}
-//========================================
-let string5 = "I love JavaScript";
-let result = "";
-for (let i = 0; i < string5.length; i++) {
-    if (string5[i] !== " ") {
-    result += string5[i];
-}
-}
-console.log(result);
-//========================================
-let numbers6 = [5, 12, 3, 20, 8];
-let counts = 0;
-for (let i = 0; i < numbers6.length; i++) {
-    if (numbers6[i] > 10) {
-    counts++;
-}
-}
-console.log(counts);
-//========================================
-let number7;
-
-while (true) {
-  number7 = Math.floor(Math.random() * 10) + 1;
-    console.log(number7);
-    if (number7 === 7) break;
-}
-//========================================
-let string7 = "I love JS and JS";
-let result1 = "";
-for (let i = 0; i < string7.length; i++) {
-    if (string7[i] === "J" && string7[i + 1] === "S") {
-    result1 += "JavaScript";
-    i++; 
-} else {
-    result1 += string7[i];
-}
-}
-console.log(result1);
-//========================================
-let text = "banana";
-let index = -1;
-for (let i = 0; i < text.length; i++) {
-    if (text[i] === "a") {
-    index = i;
-    break;
-}
-}
-console.log(index);
-//========================================
-let values2 = [1, "hello", true, "JS", 5];
-for (let i = 0; i < values2.length; i++) {
-    if (typeof values2[i] === "string") {
-    console.log(values2[i]);
-}
-}
