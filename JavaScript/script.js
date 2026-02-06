@@ -1,64 +1,46 @@
-let students = [];
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let taskText = input.value;
 
-function addStudent() {
-  let name = document.getElementById("name").value;
-  let age = document.getElementById("age").value;
-  let grade = document.getElementById("grade").value;
-
-  if (name === "" || age === "" || grade === "") {
-    alert("Please fill in all fields");
+    if (taskText === "") {
+    alert("Please enter a task");
     return;
-  }
+    }
 
-  let student = {
-    name: name,
-    age: age,
-    grade: grade
-  };
-
-  students.push(student);
-  displayStudents();
-
-  document.getElementById("name").value = "";
-  document.getElementById("age").value = "";
-  document.getElementById("grade").value = "";
-}
-
-function displayStudents() {
-  let tbody = document.getElementById("studentTable");
-  tbody.innerHTML = "";
-
-  students.forEach(function(student, index) {
     let tr = document.createElement("tr");
+    let tdTask = document.createElement("td");
+    tdTask.textContent = taskText;
 
-    let tdName = document.createElement("td");
-    tdName.textContent = student.name;
 
-    let tdAge = document.createElement("td");
-    tdAge.textContent = student.age;
+    let tdStatus = document.createElement("td");
+    tdStatus.textContent = "Pending";
 
-    let tdGrade = document.createElement("td");
-    tdGrade.textContent = student.grade;
+
+    tdTask.onclick = function () {
+    tdTask.classList.toggle("done");
+
+    if (tdStatus.textContent === "Pending") {
+        tdStatus.textContent = "Done";
+    } else {
+        tdStatus.textContent = "Pending";
+    }
+    };
+
 
     let tdAction = document.createElement("td");
     let btn = document.createElement("button");
     btn.textContent = "Delete";
     btn.onclick = function () {
-      deleteStudent(index);
+    tr.remove();
     };
 
     tdAction.appendChild(btn);
 
-    tr.appendChild(tdName);
-    tr.appendChild(tdAge);
-    tr.appendChild(tdGrade);
+    tr.appendChild(tdTask);
+    tr.appendChild(tdStatus);
     tr.appendChild(tdAction);
 
-    tbody.appendChild(tr);
-  });
-}
+    document.getElementById("taskTable").appendChild(tr);
 
-function deleteStudent(index) {
-  students.splice(index, 1);
-  displayStudents();
+    input.value = "";
 }
